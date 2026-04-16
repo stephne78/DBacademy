@@ -3,7 +3,6 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
@@ -11,7 +10,6 @@ export default defineConfig(({ mode }) => ({
     hmr: {
       overlay: false,
     },
-    // ✅ Ajoute ici la ligne allowedHosts
     allowedHosts: ['grub-armadillo-commode.ngrok-free.dev'],
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
@@ -20,4 +18,6 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // ✅ Ajout important pour Vercel
+  base: "./",
 }));
